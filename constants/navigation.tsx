@@ -57,7 +57,7 @@ export const MAIN_NAV: NavItem[] = [
   { 
     name: "Landing Pages", 
     icon: <SquareStack size={22} />, 
-    path: "/Landing-Pages",
+    path: "/landing-pages/pages",
     active: true,
     subItems: [
       { name: "Pages", icon: <Layout size={20} />, path: "/landing-pages/pages" },
@@ -71,7 +71,7 @@ export const MAIN_NAV: NavItem[] = [
    { 
     name: "Đơn hàng", 
     icon:  <Inbox size={22} />, 
-    path: "/orders",
+    path: "/orders/all",
     active: true,
     subItems: [
       { name: "Tất cả đơn hàng", icon: <ClipboardList size={20} />, path: "/orders/all" },
@@ -85,7 +85,7 @@ export const MAIN_NAV: NavItem[] = [
   {
     name: "Sản phẩm",
     icon: <Package size={22} />,
-    path: "/products",
+    path: "/products/products",
     active: true,
     subItems: [
       { name: "Sản phẩm", icon: <Package size={20} />, path: "/products/products" },
@@ -99,7 +99,7 @@ export const MAIN_NAV: NavItem[] = [
   {
     name: "Khách hàng",
     icon: <Users size={22} />,
-    path: "/customers",
+    path: "/customers/list",
     active: true,
     subItems: [
       { name: "Danh sách", icon: <Users size={20} />, path: "/customers/list" },

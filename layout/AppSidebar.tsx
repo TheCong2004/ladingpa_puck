@@ -10,6 +10,23 @@ const AppSidebar = () => {
   const { isExpanded, setIsExpanded } = useSidebar();
   const pathname = usePathname();
 
+  const normalizePath = (value: string) => value.toLowerCase();
+  const isPathMatch = (basePath: string) => normalizePath(pathname).startsWith(normalizePath(basePath));
+
+  const hasMatchingSubPath = (item: (typeof MAIN_NAV)[number]) => {
+    if (!item.subItems) {
+      return false;
+    }
+
+    return item.subItems.some((subItem) => {
+      if (isPathMatch(subItem.path)) {
+        return true;
+      }
+
+      return (subItem.children ?? []).some((child) => isPathMatch(child.path));
+    });
+  };
+
   return (
     <aside
       className={`fixed top-0 left-0 z-50 flex h-screen flex-col border-r border-neutral-200 bg-white transition-all duration-300
@@ -44,8 +61,7 @@ const AppSidebar = () => {
         {/* 2. MAIN NAVIGATION - Text 13px */}
         <ul className="space-y-1">
           {MAIN_NAV.map((nav) => {
-            // Logic Active động: Tự động nhận diện trang hiện tại
-            const isActive = pathname.startsWith(nav.path);
+            const isActive = isPathMatch(nav.path) || hasMatchingSubPath(nav);
             
             return (
               <li key={nav.name}>
