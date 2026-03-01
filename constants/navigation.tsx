@@ -34,6 +34,7 @@ export interface SubItem {
   name: string;
   path: string;
   icon?: React.ReactElement<{ size?: number; strokeWidth?: number }>;
+  children?: SubItem[];
 }
 
 export interface NavItem {
@@ -110,7 +111,55 @@ export const MAIN_NAV: NavItem[] = [
     ]
   },
   { name: "Báo cáo", icon: <BarChart3 size={22} />, path: "/reports" },
-  { name: "Cài đặt", icon: <Settings size={22} />, path: "/settings" },
+  { name: "Cài đặt", icon: <Settings size={22} />, path: "/settings",active: true,
+    subItems: [
+      { name: "Cài đặt chung", icon: <Settings size={20} />, path: "/settings/general" },
+      {
+        name: "Thành viên",
+        icon: <Users size={20} />,
+        path: "/settings/members",
+        children: [
+          { name: "Thành viên", path: "/settings/members" },
+          { name: "Đội nhóm", path: "/settings/teams" },
+        ],
+      },
+      { name: "Auto Assign", icon: <UsersRound size={20} />, path: "/settings/auto-assign" },
+      {
+        name: "Tích hợp",
+        icon: <Link2 size={20} />,
+        path: "/settings/integrations",
+        children: [
+          { name: "Tài khoản liên kết", path: "/settings/linked-accounts" },
+          { name: "Mã tracking global", path: "/settings/global-tracking-code" },
+        ],
+      },
+      { name: "Thanh toán", icon: <ShoppingBag size={20} />, path: "/settings/billing" },
+      { name: "Cấu hình thanh toán", icon: <SlidersHorizontal size={20} />, path: "/settings/payment-configuration" },
+      { name: "Khuyến mại", icon: <Tag size={20} />, path: "/settings/promotions" },
+      { name: "Thông báo", icon: <Inbox size={20} />, path: "/settings/notifications" },
+      { name: "Vận chuyển", icon: <Truck size={20} />, path: "/settings/shipping" },
+      { name: "Lịch sử hoạt động", icon: <Clock3 size={20} />, path: "/settings/activity-history" },
+      {
+        name: "Bảo mật",
+        icon: <CircleAlert size={20} />,
+        path: "/settings/security",
+        children: [
+          { name: "Xác thực OTP", path: "/settings/otp-authentication" },
+          { name: "Chặn spam đơn hàng", path: "/settings/order-spam-block" },
+        ],
+      },
+      {
+        name: "Webhooks & API",
+        icon: <Globe size={20} />,
+        path: "/settings/webhooks-api",
+        children: [
+          { name: "Webhooks", path: "/settings/webhooks" },
+          { name: "API", path: "/settings/api" },
+        ],
+      },
+      { name: "Quản lý tập tin", icon: <FolderTree size={20} />, path: "/settings/file-management" },
+      { name: "Thông tin gói", icon: <Package size={20} />, path: "/settings/plan-info" },
+    ] },
 ];
 
 // --- APP NAVIGATION (Ứng dụng phía dưới) ---
