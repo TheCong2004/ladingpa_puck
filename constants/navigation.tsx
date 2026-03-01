@@ -109,7 +109,19 @@ export const MAIN_NAV: NavItem[] = [
       { name: "Lịch sử lỗi", icon: <CircleAlert size={20} />, path: "/customers/error-history" },
     ]
   },
-  { name: "Báo cáo", icon: <BarChart3 size={22} />, path: "/reports" },
+  {
+    name: "Báo cáo",
+    icon: <BarChart3 size={22} />,
+    path: "/reports",
+    active: true,
+    subItems: [
+      { name: "Ecommerce", icon: <ShoppingBag size={20} />, path: "/reports/ecommerce" },
+      { name: "Automation", icon: <Zap size={20} />, path: "/reports/automation" },
+      { name: "Khách hàng", icon: <Users size={20} />, path: "/reports/customers" },
+      { name: "Kinh doanh", icon: <BarChart3 size={20} />, path: "/reports/business" },
+      { name: "Công việc", icon: <ClipboardList size={20} />, path: "/reports/tasks" },
+    ]
+  },
   { name: "Cài đặt", icon: <Settings size={22} />, path: "/settings" },
 ];
 
