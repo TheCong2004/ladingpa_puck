@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
+/* Định nghĩa hệ màu và biến số */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F1F5F9;
+  --foreground: #1C2434;
+  --primary: #4F46E5;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  * {
+    font-family: inherit;
+  }
+
+  /* Typography Scale chuẩn theo yêu cầu */
+  h1 {
+    font-size: 32px;
+    font-weight: 700; /* bold */
+    line-height: 1.5; /* */
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600; /* semibold */
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600; /* semibold */
+    line-height: 1.5;
+  }
+
+  p, span, div {
+    font-size: 16px; /* Body */
+    font-weight: 400; /* regular */
+    line-height: 1.6; /* 1.5-1.7 */
+  }
+
+  .caption {
+    font-size: 14px; /* Caption */
+    font-weight: 400; /* regular */
+    line-height: 1.5;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Ẩn scrollbar cho sidebar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* globals.css */
+@layer components {
+  .template-scroll-effect {
+    /* Trượt mượt mà trong 4-5 giây tùy độ dài ảnh */
+    transition: transform 5s linear !important;
+    will-change: transform;
+  }
+
+  /* Khi hover vào group, ảnh sẽ trượt lên một khoảng --scroll-dist */
+  .group:hover .template-scroll-effect {
+    transform: translateY(var(--scroll-dist));
+  }
+}
+.linear {
+  transition-timing-function: linear !important;
 }
