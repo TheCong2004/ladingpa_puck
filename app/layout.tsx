@@ -34,6 +34,10 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
   };
 
   const activeSection = MAIN_NAV.find((item) => isPathMatch(item.path) || hasMatchingSubPath(item));
+  const activeSubSidebarTitle = activeSection?.name ?? "";
+  const activeSubSidebarItems = activeSection?.subItems ?? [];
+  const shouldHideSubSidebar = ["/settings/promotions/create"].some((path) => isPathMatch(path));
+  const shouldShowSubSidebar = activeSubSidebarItems.length > 0 && !shouldHideSubSidebar;
   
   // Tính toán lề trái cho Cột 2 & 3
   const mainWidth = isExpanded ? "ml-[220px]" : "ml-[72px]";
@@ -45,9 +49,9 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
       <div className={`flex flex-1 transition-all duration-300 ${mainWidth}`}>
         {/* CỘT 2: Đóng mở bằng cách thay đổi chiều rộng w-0 hoặc w-[224px] */}
-        <div className={`transition-all duration-300 overflow-hidden ${activeSection?.subItems ? (isSubOpen ? "w-[224px]" : "w-[72px]") : "w-0"}`}>
-          {activeSection?.subItems && (
-            <SubSidebar title={activeSection.name} items={activeSection.subItems} />
+        <div className={`transition-all duration-300 overflow-hidden ${shouldShowSubSidebar ? (isSubOpen ? "w-56" : "w-18") : "w-0"}`}>
+          {shouldShowSubSidebar && (
+            <SubSidebar title={activeSubSidebarTitle} items={activeSubSidebarItems} />
           )}
         </div>
         
