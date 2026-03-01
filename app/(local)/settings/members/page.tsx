@@ -10,7 +10,7 @@ export default function SettingsMembersPage() {
 
     return (
         <>
-            <div className="w-full px-8 py-6 lg:px-24">
+            <div className="w-full px-4 py-5 sm:px-6 lg:px-12 xl:px-20">
                 <div className="mx-auto w-full max-w-380">
                     <MembersHeader onOpenAddMember={() => setIsOpen(true)} />
                     <MembersTable />

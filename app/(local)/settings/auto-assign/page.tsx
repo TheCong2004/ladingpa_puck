@@ -29,9 +29,9 @@ export default function AutoAssignPage() {
   const [ruleType, setRuleType] = useState("all");
 
   return (
-    <div className="w-full px-8 py-6 lg:px-16">
+    <div className="w-full px-4 py-5 sm:px-6 lg:px-12 xl:px-16">
       <div className="mx-auto w-full max-w-350">
-        <div className="mb-8 flex items-start justify-between gap-4">
+        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <div className="flex items-center gap-3">
               <h1 className="text-[30px] font-bold leading-tight text-neutral-900">Auto Assign</h1>
@@ -42,13 +42,13 @@ export default function AutoAssignPage() {
             </p>
           </div>
 
-          <button className="rounded-xl bg-indigo-700 px-7 py-3 text-[14px] font-bold text-white hover:bg-indigo-800">
+          <button className="w-full rounded-xl bg-indigo-700 px-7 py-3 text-[14px] font-bold text-white hover:bg-indigo-800 sm:w-auto">
             Lưu thay đổi
           </button>
         </div>
 
         <div className="mb-6 border-b border-neutral-200">
-          <div className="flex items-center gap-10">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-8 lg:gap-10">
             <button
               type="button"
               onClick={() => setActiveTab("percentage")}
@@ -103,7 +103,7 @@ export default function AutoAssignPage() {
           <div className="space-y-6 px-1 py-3">
             <div>
               <p className="mb-2 text-[14px] font-semibold text-neutral-900">Điều kiện khác</p>
-              <div className="relative w-70">
+              <div className="relative w-full sm:w-70">
                 <select
                   defaultValue="Mặc định (Không chia)"
                   className="h-12 w-full appearance-none rounded-xl border border-neutral-300 bg-white px-4 pr-10 text-[14px] text-neutral-700 outline-none focus:border-indigo-300"

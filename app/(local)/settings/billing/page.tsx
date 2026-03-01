@@ -249,14 +249,14 @@ export default function BillingSettingsPage() {
 
   return (
     <>
-      <div className="w-full px-8 py-5 lg:px-20">
+      <div className="w-full px-4 py-5 sm:px-6 lg:px-12 xl:px-20">
         <div className="mx-auto w-full max-w-350">
           <h1 className="mb-5 text-[30px] font-bold text-neutral-900">Phương thức thanh toán</h1>
 
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             {PAYMENT_METHODS.map((method) => (
               <div key={method.key} className="rounded-xl border border-neutral-200 bg-white p-3">
-                <div className="flex items-start justify-between gap-3 border-b border-neutral-100 pb-3">
+                <div className="flex flex-col gap-3 border-b border-neutral-100 pb-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex items-start gap-3">
                     <span className="mt-0.5 rounded-md bg-neutral-100 px-2 py-1 text-[14px]">{method.badge}</span>
                     <div>
@@ -265,7 +265,7 @@ export default function BillingSettingsPage() {
                   </div>
 
                   {method.key === "cod" && method.enabled ? (
-                    <div className="flex items-center gap-2">
+                    <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:justify-end">
                       <button
                         type="button"
                         onClick={() => setActiveMethod(method)}
@@ -281,7 +281,7 @@ export default function BillingSettingsPage() {
                     <button
                       type="button"
                       onClick={() => setActiveMethod(method)}
-                      className="rounded-lg bg-indigo-700 px-4 py-1.5 text-[13px] font-bold text-white hover:bg-indigo-800"
+                      className="w-full rounded-lg bg-indigo-700 px-4 py-1.5 text-[13px] font-bold text-white hover:bg-indigo-800 sm:w-auto"
                     >
                       Thiết lập
                     </button>

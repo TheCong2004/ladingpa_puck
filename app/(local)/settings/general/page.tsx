@@ -22,15 +22,15 @@ function SectionRow({
 
 export default function SettingsGeneralPage() {
     return (
-        <div className=" w-full max-w-350 px-8 py-5 lg:px-20">
-            <div className="mb-5 flex items-start justify-between gap-4 border-b border-neutral-100 pb-4">
+        <div className="mx-auto w-full max-w-350 px-4 py-5 sm:px-6 lg:px-12 xl:px-20">
+            <div className="mb-5 flex flex-col gap-4 border-b border-neutral-100 pb-4 lg:flex-row lg:items-start lg:justify-between">
                 <div>
                     <h1 className="text-[30px] font-bold leading-tight text-neutral-900">Cài đặt chung</h1>
                     <p className="mt-1 text-[14px] text-neutral-500">
                         Những thông tin cơ bản về cửa hàng và tài khoản của bạn được cài đặt ở đây
                     </p>
                 </div>
-                <button className="rounded-lg bg-indigo-600 px-6 py-2.5 text-[14px] font-bold text-white hover:bg-indigo-700">
+                <button className="w-full rounded-lg bg-indigo-600 px-6 py-2.5 text-[14px] font-bold text-white hover:bg-indigo-700 sm:w-auto">
                     Cập nhật
                 </button>
             </div>

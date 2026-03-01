@@ -1,10 +1,30 @@
-import { ArrowUpDown, CalendarDays, ChevronDown, Download, PackageOpen, Search } from "lucide-react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpDown, CalendarDays, ChevronDown, Download, PackageOpen, Search, Ticket, TicketPercent } from "lucide-react";
+import Link from "next/link";
 
 export default function PromotionsPage() {
+  const [isCreateMenuOpen, setIsCreateMenuOpen] = useState(false);
+  const createMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (createMenuRef.current && !createMenuRef.current.contains(event.target as Node)) {
+        setIsCreateMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="w-full px-8 py-5 lg:px-20">
+    <div className="w-full px-4 py-5 sm:px-6 lg:px-12 xl:px-20">
       <div className="mx-auto w-full max-w-350">
-        <div className="mb-4 flex items-start justify-between gap-4">
+        <div className="mb-4 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <h1 className="text-[30px] font-bold leading-tight text-neutral-900">Khuyến mại</h1>
             <p className="mt-1 text-[14px] text-neutral-600">
@@ -12,14 +32,53 @@ export default function PromotionsPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
-            <button className="inline-flex items-center gap-2 rounded-xl border border-neutral-300 bg-white px-5 py-2.5 text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50">
+          <div className="flex w-full flex-wrap items-center gap-2 lg:w-auto lg:justify-end lg:gap-3">
+            <button className="inline-flex items-center gap-2 rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-[14px] font-semibold text-neutral-700 hover:bg-neutral-50 lg:px-5">
               <Download size={16} />
               Xuất mã khuyến mại
             </button>
-            <button className="rounded-xl bg-indigo-700 px-5 py-2.5 text-[14px] font-bold text-white hover:bg-indigo-800">
-              Tạo khuyến mại mới
-            </button>
+
+            <div className="relative" ref={createMenuRef}>
+              <button
+                type="button"
+                onClick={() => setIsCreateMenuOpen((prev) => !prev)}
+                className="rounded-xl bg-indigo-700 px-5 py-2.5 text-[14px] font-bold text-white hover:bg-indigo-800"
+              >
+                Tạo khuyến mại mới
+              </button>
+
+              {isCreateMenuOpen ? (
+                <div className="absolute right-0 top-[calc(100%+8px)] z-20 w-[min(24rem,calc(100vw-2rem))] rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm sm:w-100 sm:p-5">
+                  <Link
+                    href="/settings/promotions/create?type=code"
+                    onClick={() => setIsCreateMenuOpen(false)}
+                    className="flex w-full items-start gap-3 rounded-lg px-2 py-2 text-left hover:bg-neutral-50"
+                  >
+                    <Ticket size={20} className="mt-0.5 text-neutral-400" />
+                    <span>
+                      <span className="block text-[15px] font-semibold leading-tight text-neutral-900">Tạo mã khuyến mại</span>
+                      <span className="mt-1 block text-[13px] text-neutral-600">
+                        Khách hàng nhận khuyến mại bằng cách nhập mã khi thanh toán.
+                      </span>
+                    </span>
+                  </Link>
+
+                  <Link
+                    href="/settings/promotions/create?type=program"
+                    onClick={() => setIsCreateMenuOpen(false)}
+                    className="mt-2 flex w-full items-start gap-3 rounded-lg px-2 py-2 text-left hover:bg-neutral-50"
+                  >
+                    <TicketPercent size={20} className="mt-0.5 text-neutral-400" />
+                    <span>
+                      <span className="block text-[15px] font-semibold leading-tight text-neutral-900">Tạo chương trình khuyến mại</span>
+                      <span className="mt-1 block text-[13px] text-neutral-600">
+                        Khách hàng nhận khuyến mại tự động khi đáp ứng đủ điều kiện nhận hàng.
+                      </span>
+                    </span>
+                  </Link>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
 
@@ -69,7 +128,8 @@ export default function PromotionsPage() {
         </div>
 
         <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
-          <div className="grid grid-cols-[44px_1.4fr_1.3fr_0.9fr_0.9fr_1fr_1fr_1fr] items-center border-b border-neutral-200 px-3 py-3 text-[13px] font-bold text-neutral-900">
+          <div className="overflow-x-auto">
+            <div className="grid min-w-230 grid-cols-[44px_1.4fr_1.3fr_0.9fr_0.9fr_1fr_1fr_1fr] items-center border-b border-neutral-200 px-3 py-3 text-[13px] font-bold text-neutral-900">
             <div className="flex justify-center">
               <input type="checkbox" className="h-4 w-4 rounded border border-neutral-300" />
             </div>
@@ -86,6 +146,7 @@ export default function PromotionsPage() {
             <div>Ngày bắt đầu</div>
             <div>Ngày kết thúc</div>
             <div>Người tạo</div>
+            </div>
           </div>
 
           <div className="flex min-h-110 flex-col items-center justify-center gap-3 px-4 py-10 text-center">

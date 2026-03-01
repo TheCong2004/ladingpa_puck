@@ -9,13 +9,13 @@ export default function SettingsTeamsPage() {
 
   return (
     <>
-      <div className="w-full px-8 py-6 lg:px-20">
+      <div className="w-full px-4 py-5 sm:px-6 lg:px-12 xl:px-20">
         <div className="mx-auto w-full max-w-350">
-          <div className="mb-6 flex items-center justify-between gap-4">
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h1 className="text-[24px] font-bold leading-tight text-neutral-900">Danh sách đội nhóm</h1>
             <button
               onClick={() => setIsOpen(true)}
-              className="rounded-xl bg-indigo-700 px-6 py-3 text-[14px] font-bold text-white hover:bg-indigo-800"
+              className="w-full rounded-xl bg-indigo-700 px-6 py-3 text-[14px] font-bold text-white hover:bg-indigo-800 sm:w-auto"
             >
               Tạo đội nhóm
             </button>
@@ -30,7 +30,8 @@ export default function SettingsTeamsPage() {
           </div>
 
           <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
-            <div className="grid grid-cols-[56px_2fr_1fr_1.3fr_1.5fr] items-center border-b border-neutral-200 px-2 py-4 text-[14px] font-bold text-neutral-900">
+            <div className="overflow-x-auto">
+            <div className="grid min-w-190 grid-cols-[56px_2fr_1fr_1.3fr_1.5fr] items-center border-b border-neutral-200 px-2 py-4 text-[14px] font-bold text-neutral-900">
               <div className="flex justify-center">
                 <input type="checkbox" className="h-5 w-5 rounded border border-neutral-300" />
               </div>
@@ -38,6 +39,7 @@ export default function SettingsTeamsPage() {
               <div>Số thành viên</div>
               <div>Team Lead</div>
               <div>Thời gian cập nhật</div>
+            </div>
             </div>
 
             <div className="flex min-h-75 items-center justify-center">

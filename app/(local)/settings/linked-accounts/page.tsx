@@ -144,23 +144,23 @@ export default function LinkedAccountsPage() {
 
   return (
     <>
-      <div className="w-full px-8 py-5 lg:px-20">
+      <div className="w-full px-4 py-5 sm:px-6 lg:px-12 xl:px-20">
         <div className="mx-auto w-full max-w-350">
-          <div className="mb-5 flex items-start justify-between gap-4 border-b border-neutral-100 pb-4">
+          <div className="mb-5 flex flex-col gap-4 border-b border-neutral-100 pb-4 lg:flex-row lg:items-start lg:justify-between">
             <div>
               <h1 className="text-[30px] font-bold leading-tight text-neutral-900">Tài khoản liên kết</h1>
               <p className="mt-1 text-[14px] text-neutral-500">
                 Quản lý các tài khoản tích hợp để đồng bộ dữ liệu và tính năng tự động.
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex w-full flex-wrap items-center gap-2 lg:w-auto">
               <button
                 onClick={() => setIsCreateOpen(true)}
-                className="rounded-lg bg-indigo-700 px-5 py-2.5 text-[14px] font-bold text-white hover:bg-indigo-800"
+                className="w-full rounded-lg bg-indigo-700 px-5 py-2.5 text-[14px] font-bold text-white hover:bg-indigo-800 sm:w-auto"
               >
                 Tạo liên kết
               </button>
-              <button className="rounded-lg border border-neutral-300 bg-white px-5 py-2.5 text-[14px] font-bold text-neutral-700 hover:bg-neutral-50">
+              <button className="w-full rounded-lg border border-neutral-300 bg-white px-5 py-2.5 text-[14px] font-bold text-neutral-700 hover:bg-neutral-50 sm:w-auto">
                 Lưu thay đổi
               </button>
             </div>
@@ -168,10 +168,7 @@ export default function LinkedAccountsPage() {
 
           <div className="space-y-3">
             {providers.map((provider) => (
-              <div
-                key={provider.key}
-                className="flex items-center justify-between rounded-xl border border-neutral-200 bg-white px-4 py-4"
-              >
+              <div key={provider.key} className="flex flex-col gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 rounded-lg bg-indigo-50 p-2 text-indigo-600">
                     <Link2 size={18} />
@@ -186,7 +183,7 @@ export default function LinkedAccountsPage() {
                 <button
                   type="button"
                   onClick={() => (provider.connected ? toggleConnect(provider.key) : setIsCreateOpen(true))}
-                  className={`rounded-lg px-4 py-2 text-[13px] font-semibold ${
+                  className={`w-full rounded-lg px-4 py-2 text-[13px] font-semibold sm:w-auto ${
                     provider.connected
                       ? "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50"
                       : "bg-indigo-700 text-white hover:bg-indigo-800"
