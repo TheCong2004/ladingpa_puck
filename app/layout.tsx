@@ -16,7 +16,24 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
   const { isExpanded, isSubOpen } = useSidebar();
   const pathname = usePathname();
 
-  const activeSection = MAIN_NAV.find(n => pathname.toLowerCase().startsWith(n.path.toLowerCase()));
+  const normalizePath = (value: string) => value.toLowerCase();
+  const isPathMatch = (basePath: string) => normalizePath(pathname).startsWith(normalizePath(basePath));
+
+  const hasMatchingSubPath = (item: (typeof MAIN_NAV)[number]) => {
+    if (!item.subItems) {
+      return false;
+    }
+
+    return item.subItems.some((subItem) => {
+      if (isPathMatch(subItem.path)) {
+        return true;
+      }
+
+      return (subItem.children ?? []).some((child) => isPathMatch(child.path));
+    });
+  };
+
+  const activeSection = MAIN_NAV.find((item) => isPathMatch(item.path) || hasMatchingSubPath(item));
   
   // Tính toán lề trái cho Cột 2 & 3
   const mainWidth = isExpanded ? "ml-[220px]" : "ml-[72px]";
