@@ -1,6 +1,7 @@
 import { ArrowUpDown } from "lucide-react";
 import type { SegmentItem } from "./types";
 import { sortHeaderClass } from "./utils";
+import { headerCellClass } from "../tags/utils";
 
 interface SegmentsTableProps {
   items: SegmentItem[];
@@ -32,8 +33,8 @@ export const SegmentsTable = ({
             className="h-4 w-4 rounded border border-neutral-300"
           />
         </span>
-        <span>Tên Segment</span>
-        <span>Số khách hàng</span>
+        <span  className={headerCellClass}>Tên Segment</span>
+        <span className={headerCellClass}>Số khách hàng</span>
         <button type="button" onClick={onToggleCreatedSort} className={sortHeaderClass}>
           Ngày tạo
           <ArrowUpDown size={14} />
