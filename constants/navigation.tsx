@@ -49,6 +49,7 @@ export interface AppNavItem {
   name: string;
   icon: React.ReactElement<{ size?: number; strokeWidth?: number }>;
   color: string;
+  path?: string;
 }
 
 // --- MAIN NAVIGATION (Menu chính bên trái) ---
@@ -110,7 +111,19 @@ export const MAIN_NAV: NavItem[] = [
       { name: "Lịch sử lỗi", icon: <CircleAlert size={20} />, path: "/customers/error-history" },
     ]
   },
-  { name: "Báo cáo", icon: <BarChart3 size={22} />, path: "/reports" },
+  {
+    name: "Báo cáo",
+    icon: <BarChart3 size={22} />,
+    path: "/reports/ecommerce",
+    active: true,
+    subItems: [
+      { name: "Ecommerce", icon: <ShoppingBag size={20} />, path: "/reports/ecommerce" },
+      { name: "Automation", icon: <Zap size={20} />, path: "/reports/automation" },
+      { name: "Khách hàng", icon: <Users size={20} />, path: "/reports/customers" },
+      { name: "Kinh doanh", icon: <BarChart3 size={20} />, path: "/reports/business" },
+      { name: "Công việc", icon: <ClipboardList size={20} />, path: "/reports/tasks" },
+    ],
+  },
   { name: "Cài đặt", icon: <Settings size={22} />, path: "/settings",active: true,
     subItems: [
       { name: "Cài đặt chung", icon: <Settings size={20} />, path: "/settings/general" },
@@ -165,9 +178,9 @@ export const MAIN_NAV: NavItem[] = [
 // --- APP NAVIGATION (Ứng dụng phía dưới) ---
 // Typography: Caption 14px hoặc Body 16px tùy vị trí
 export const APP_NAV: AppNavItem[] = [
-  { name: "Automation", icon: <Zap size={20} />, color: "bg-orange-100 text-orange-600" },
-  { name: "Website Builder", icon: <Globe size={20} />, color: "bg-stone-100 text-stone-600" },
-  { name: "Ecommerce Stores", icon: <ShoppingBag size={20} />, color: "bg-green-100 text-green-600" },
+  { name: "Automation", icon: <Zap size={20} />, color: "bg-orange-100 text-orange-600", path: "/automation" },
+  { name: "Website Builder", icon: <Globe size={20} />, color: "bg-stone-100 text-stone-600", path: "/website-builder" },
+  { name: "Ecommerce Stores", icon: <ShoppingBag size={20} />, color: "bg-green-100 text-green-600", path: "/ecommerce-stores" },
   { name: "Short Links", icon: <Link2 size={20} />, color: "bg-red-100 text-red-600" },
   { name: "Blog", icon: <PenTool size={20} />, color: "bg-indigo-100 text-indigo-600" },
   { name: "Dynamic", icon: <Database size={20} />, color: "bg-blue-100 text-blue-600" },
