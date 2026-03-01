@@ -100,23 +100,48 @@ const AppSidebar = () => {
           </div>
 
           <ul className="space-y-1">
-            {APP_NAV.map((app) => (
-              <li key={app.name}>
-                <button 
-                  className={`group flex w-full items-center rounded-xl py-2.5 transition-all hover:bg-neutral-50 
-                    ${isExpanded ? "gap-4 px-4" : "justify-center px-0"}`}
-                >
-                  <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg shadow-sm ${app.color}`}>
-                    {React.cloneElement(app.icon, { size: 16 })}
-                  </div>
-                  {isExpanded && (
-                    <span className="text-[13px] font-medium text-neutral-600 group-hover:text-neutral-900 truncate">
-                      {app.name}
-                    </span>
-                  )}
-                </button>
-              </li>
-            ))}
+            {APP_NAV.map((app) => {
+              const isAppActive = app.path ? isPathMatch(app.path) : false;
+              const baseClass = `group flex w-full items-center rounded-xl py-2.5 transition-all ${
+                isExpanded ? "gap-4 px-4" : "justify-center px-0"
+              } ${isAppActive ? "bg-indigo-50" : "hover:bg-neutral-50"}`;
+
+              if (app.path) {
+                return (
+                  <li key={app.name}>
+                    <Link href={app.path} className={baseClass}>
+                      <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg shadow-sm ${app.color}`}>
+                        {React.cloneElement(app.icon, { size: 16 })}
+                      </div>
+                      {isExpanded && (
+                        <span
+                          className={`truncate text-[13px] font-medium ${
+                            isAppActive ? "text-indigo-700" : "text-neutral-600 group-hover:text-neutral-900"
+                          }`}
+                        >
+                          {app.name}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={app.name}>
+                  <button className={baseClass}>
+                    <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg shadow-sm ${app.color}`}>
+                      {React.cloneElement(app.icon, { size: 16 })}
+                    </div>
+                    {isExpanded && (
+                      <span className="truncate text-[13px] font-medium text-neutral-600 group-hover:text-neutral-900">
+                        {app.name}
+                      </span>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
